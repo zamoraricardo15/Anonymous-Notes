@@ -1,0 +1,62 @@
+<div class="wrapper">
+
+<h1>Anonymous Notes</h1>
+<br>
+<br>
+
+<div id ="addNote">
+
+<form (submit)="createNote()" #myForm="ngForm" method="POST">
+
+  Note: <input type="text" 
+
+  name="post"
+  required
+
+  minlength="3"
+  
+  [(ngModel)] = 'note.post'
+  #post = "ngModel"
+  >
+  <div *ngIf="!note.post.valid && (note.post.dirty || note.post.touched)">
+
+
+
+    
+    Note with error
+  </div>
+
+
+  <div *ngIf="errors && errors.minlength" id="error">
+    Note must be at least 3 characters
+
+
+  </div>
+
+  <input type="submit" value="Add Note">
+</form>
+</div>
+<br>
+<hr>
+
+
+
+
+<div id = "display">
+
+
+  
+<div *ngFor="let x of notes">
+  <div class="note">
+  <div>
+    <p style="margin-top:0%"> Noted on: {{ x.created_at | date: 'MMM d, y, h:mm:ss a'}}</p>
+  </div>
+  
+    <p>{{x.post}}</p>
+
+</div>
+<br>
+</div>
+</div>
+
+</div>
